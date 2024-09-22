@@ -2,8 +2,10 @@
 # MO:NT: Mood Organization : Noticing and Tracking
 
 **As part of Stanford BioHacks 2024**  
-Demo:
+Demo: \
 Devpost:
+
+Live Share was used when developing this applcation
 ## Inspiration
 
 Mental health is often overlooked in patients with muscular dystrophy, despite the profound effects their condition can have on emotional well-being. We noticed the lack of tools to help individuals track and understand their emotions in a way that supports their mental health journey. We wanted to create a solution that could provide valuable insights into emotional trends and help users identify where they feel their strongest emotions.
