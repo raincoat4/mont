@@ -27,13 +27,3 @@ We used Expo and React Native for the mobile app's frontend, enabling cross-plat
 
 Our next steps for MO:NT involve expanding our emotional trend analysis by incorporating more advanced AI models to improve the accuracy of insights. We also aim to include features that allow users to share their emotional maps with healthcare providers, helping to bridge the gap between mental health and medical treatment. In the future, we plan to integrate MO:NT with wearable devices, offering more precise tracking of emotional states and their correlation with physical health data.
 
-
-# Expo Router and Tailwind CSS
-
-Use [Expo Router](https://docs.expo.dev/router/introduction/) with [Nativewind](https://www.nativewind.dev/v4/overview/) styling.
-
-## 🚀 How to use
-
-```sh
-npx create-expo-app -e with-router-tailwind
-```
