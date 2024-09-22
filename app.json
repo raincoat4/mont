@@ -1,36 +1,37 @@
 {
   "expo": {
-    "name": "mont",
-    "slug": "mont",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "acme",
     "userInterfaceStyle": "automatic",
-    "splash": {
-      "image": "./assets/images/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+    "orientation": "default",
+    "web": {
+      "output": "static",
+      "bundler": "metro"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
-    },
-    "web": {
-      "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "googleServicesFile": "./google-services.json",
+      "package": "mont.stanford"
     },
     "plugins": [
-      "expo-router"
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ],
+      [
+        "expo-router",
+        {
+          "origin": "https://n"
+        }
+      ]
     ],
-    "experiments": {
-      "typedRoutes": true
-    }
+    "name": "mont",
+    "slug": "mont"
   }
 }

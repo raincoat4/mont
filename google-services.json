@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "586502202044",
+    "firebase_url": "https://mont-83060-default-rtdb.firebaseio.com",
+    "project_id": "mont-83060",
+    "storage_bucket": "mont-83060.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:586502202044:android:ae49047bf629fbaa8166b9",
+        "android_client_info": {
+          "package_name": "mont.stanford"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "586502202044-hsqhrj18nh434lfprrop2fcs8hn72orl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYE2ftDeFfeqYA481E-vPPhJWqfYJpgAQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "586502202044-hsqhrj18nh434lfprrop2fcs8hn72orl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "586502202044-7jvndmg87f7ootm5bgol8l8v5hkdtlg8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "mont.stanford"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
