@@ -66,18 +66,28 @@ export default function Content({ setComp, session, setMapPrevComp }) {
 
 
       {/* Auth Modal */}
-      <Modal
-        transparent={true}
-        animationType="slide"
-        visible={isModalVisible}
-        onRequestClose={() => setIsModalVisible(false)}
-      >
-        <View className="flex-1 justify-center items-center bg-black/50">
-          <View className="w-4/5 p-5 bg-white rounded-lg">
-            <Auth setComp={setComp} setIsModalVisible={setIsModalVisible} isSignUp={isSignUp} session={session} />
+        <Modal
+          transparent={true}
+          animationType="slide"
+          visible={isModalVisible}
+          onRequestClose={() => setIsModalVisible(false)}
+        >
+          <View className="flex-1 justify-center items-center bg-black/50">
+            <View className="h-5/6 w-5/6 p-5 bg-white/70 rounded-3xl items-center">
+            <Image
+              source={require("../public/mont_logo.png")}
+              style={{ width: 75, height: 75, position: 'absolute', top: 145, left: 115 }} // Adjust top/left for positioning
+              resizeMode="contain"
+            />
+            <Image
+              source={require("../public/curved-text.png")} // Use your second image source
+              style={{ width: 200, height: 200 }} // Keep it in normal flow
+              resizeMode="contain"
+            />
+              <Auth setComp={setComp} setIsModalVisible={setIsModalVisible} isSignUp={isSignUp} session={session} />
+            </View>
           </View>
-        </View>
-      </Modal>
-    </View>
+        </Modal>
+      </View>
   );
 }
