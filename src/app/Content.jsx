@@ -21,22 +21,16 @@ export default function Content({ setComp, session, setMapPrevComp }) {
   };
 
   return (
-    <View className="flex-1">
-      <View className="py-12 md:py-24 lg:py-32 xl:py-48">
+    <View className="flex-1 bg-indigo-700 ">
+      <View className="py-12 md:py-24 lg:py-32 xl:py-48 mt-24">
         <View className="px-4 md:px-6">
           <View className="flex flex-col items-center gap-4 text-center">
             <Image
               source={require("../public/mont_logo.png")}
-              style={{ width: 200, height: 200 }}
+              style={{ width: 75, height: 75 }}
               resizeMode="contain"
             />
-            <Text
-              role="heading"
-              className="text-3xl text-center native:text-5xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl"
-            >
-              MO:NT
-            </Text>
-            <Text className="text-3xl text-center native:text-5xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
+            <Text className="text-3xl text-center native:text-5xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl color-white">
               Find Your Happy Place
             </Text>
             <Text className="mx-auto max-w-[700px] text-lg text-center text-gray-500 md:text-xl dark:text-gray-400">
@@ -46,24 +40,30 @@ export default function Content({ setComp, session, setMapPrevComp }) {
         </View>
       </View>
 
-      <View className="absolute bottom-4 left-0 right-0 flex items-center">
-        <View className="w-full flex items-center">
-          <View className="flex w-full max-w-[700px]">
-            <Button
-              title="Get Started"
-              onPress={handleGetStarted}
-              className="flex h-12 w-full items-center justify-center rounded-md text-gray-50 transition-colors hover:bg-gray-900/90 active:bg-gray-400/90 focus:outline-none"
-              accessibilityLabel="Get Started"
-            />
-            <Text className="mt-16 text-sm text-gray-500 dark:text-gray-400">
-              Don’t have an account?{" "}
-              <TouchableOpacity onPress={handleSignUp} accessibilityLabel="Sign up">
-                <Text className="text-blue-500">Sign up</Text>
-              </TouchableOpacity>
-            </Text>
-          </View>
+    <View className="absolute bottom-12 left-0 right-0 flex items-center">
+      <View className="w-full flex items-center justify-center">
+        <View className="w-auto max-w-[700px] flex flex-col items-center">
+        <TouchableOpacity
+          onPress={handleGetStarted}
+          className="h-16 w-80 items-center justify-center rounded-full bg-amber-500 transition-colors hover:bg-indigo-800 active:bg-indigo-900 focus:outline-none"
+          accessibilityLabel="Get Started"
+        >
+          <Text className="text-black text-lg">Get Started</Text>
+        </TouchableOpacity>
+
+        <View className="flex-row items-center mt-4">
+          <Text className="italic text-sm text-gray-500 dark:text-gray-400">
+            Don’t have an account?{" "}
+          </Text>
+          <TouchableOpacity onPress={handleSignUp} accessibilityLabel="Sign up">
+            <Text className="text-gray-500 text-sm underline italic">Sign up</Text>
+          </TouchableOpacity>
+        </View>
+
         </View>
       </View>
+    </View>
+
 
       {/* Auth Modal */}
       <Modal
