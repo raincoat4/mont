@@ -34,7 +34,7 @@ export default function Content({ setComp, session, setMapPrevComp }) {
               Find Your Happy Place
             </Text>
             <Text className="mx-auto max-w-[700px] text-lg text-center text-gray-500 md:text-xl dark:text-gray-400">
-              Discover how your environment influences your mood. Track your mood in different locations and explore patterns that emerge with MO:NT (Mood Organizing: Noticing and Tracking).
+              Discover how your environment influences your mood. Track your mood in different locations and explore patterns that emerge with <Text className="text-amber-500">MO:NT </Text>(Mood Organizing: Noticing and Tracking).
             </Text>
           </View>
         </View>

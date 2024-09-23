@@ -10,6 +10,8 @@ import {
 } from "react-native";
 import * as Location from "expo-location";
 import { supabase } from "../lib/supabase";
+import { LinearGradient } from 'expo-linear-gradient';
+import { BlurView } from 'expo-blur';
 const moodImages = {
   happy: require("../public/happy.png"),
   sad: require("../public/sad.png"),
@@ -121,45 +123,89 @@ const Main = ({ setComp, session, mapPrevComp }) => {
 
   return (
     <View className="flex-1 overflow-auto">
-      <View className="py-12 md:py-24 lg:py-32 xl:py-48">
-        <View>
-          {/*header*/}
-          <View className = "flex w-full">
-            <Text className="text-xl font-bold">MO:NT</Text>
+      {/*header*/}
+      <View className = "flex flex-row w-full justify-center items-center bg-indigo-800">
             <Image
               source={require("../public/mont_logo.png")}
-              className="w-20 h-20"
+              className="w-10 h-10 mr-2"
               resizeMode="contain"
             />
+            <Image
+              source={require("../public/straight-text.png")}
+              className="w-24 h-24"
+              resizeMode="contain"
+            />
+            <TouchableOpacity onPress={() => setComp("auth")} className="flex absolute left-3/4">
+              <Text className="text-lg  underline text-slate-300">Sign Out</Text>
+            </TouchableOpacity>
           </View>
-          <Text className="text-lg">Hello {fullName}</Text>
-          <Text>Based on our analysis</Text>
-          <Text>Yo liam uncomment the line below to see the coordinate data. You can do JSON.parse(coordinates)</Text>
-          {/* {coordinates &&
-            JSON.parse(coordinates).map((entry, index) => (
-              <Text key={index}>
-                Mood: {entry.mood}, Latitude: {entry.latitude}, Longitude:{" "}
-                {entry.longitude}
-                {"\n"}
-              </Text>
-            ))} */}
-          <Text>Your recent trends</Text>
-          <Text>dummy data Last week you felt most sad at</Text>
-          <Text>Your past week:</Text>
-          <Text>Happy: {moodCounts.happy}</Text>
-          <Text>Sad: {moodCounts.sad}</Text>
-          <Text>Neutral: {moodCounts.neutral}</Text>
-          <Text>Angry: {moodCounts.angry}</Text>
+          <LinearGradient
+               // Button Linear Gradient
+            colors={['#4c669f', '#3b5998', '#192f6a']}>
+        <View className="py-12 md:py-24 lg:py-32 xl:py-48 h-screen flex items-center justify-between">
+              <Text className="text-5xl">Hello, {fullName}</Text>
+              <View className = "h-1/6 w-5/6 bg-white rounded-3xl flex items-center bottom-5">
+                <View className = "w-full h-1/3 bg-indigo-500 rounded-t-3xl flex items-center justify-center">
+                  <Text className = "text-white text-xl">Based on our analysis...</Text>
+                </View>
+                <View className = "top-3 flex items-center mx-5">
+                  <Text className = "text-xl text-center">You tend to feel more happy at: <Text className = "color-indigo-500">Lonsdale Quay</Text></Text>
+                </View>
+                {/* {coordinates &&
+                  JSON.parse(coordinates).map((entry, index) => (
+                    <Text key={index}>
+                      Mood: {entry.mood}, Latitude: {entry.latitude}, Longitude:{" "}
+                      {entry.longitude}
+                      {"\n"}
+                    </Text>
+                  ))} */}
+              </View>
 
-          <View className="flex-row justify-between mt-4">
-            <Button title="Left Button" onPress={() => setComp("main")} />
-            <Button title="Right Button" onPress={() => setComp("map")} />
-          </View>
-          <TouchableOpacity onPress={() => setComp("auth")} className="mt-4">
-            <Text className="text-lg">Sign Out</Text>
-          </TouchableOpacity>
+              <View className = "h-1/6 w-5/6 bg-white rounded-3xl flex items-center bottom-5">
+                <View className = "w-full h-1/3 bg-indigo-500 rounded-t-3xl flex items-center justify-center">
+                  <Text className = "text-white text-xl">Your Recent Trends</Text>
+                </View>
+                <View className = "top-3 flex items-center mx-5">
+                  <Text className = "text-xl text-center">You felt most sad at <Text className="text-indigo-500">St.Paul's Hospital</Text> last week.</Text>
+                </View>
+              </View>
+              <View className = "h-1/4 w-5/6 rounded-3xl bg-white bottom-5">
+                <Text className = "text-xl left-3 mb-1">Your past week:</Text>
+                <View className="flex-row flex-wrap justify-around w-full px-4">
+                  {["happy", "sad", "neutral", "angry"].map((mood) => (
+                    <View key = {mood} className = "flex w-1/2 items-center mb-4">
+                      <View className = "flex-row items-center">
+                        <Image
+                          source={moodImages[mood]}
+                          className="w-16 h-16"
+                          resizeMode="contain"
+                        />
+                        <Text className = "text-2xl"> X{moodCounts.happy}</Text>
+                      </View>
+                    </View>
+                  ))}
+                </View>
+              </View>
+              <View className="flex-row justify-between bottom-8 w-full">
+              <TouchableOpacity onPress={() => setComp("map")} className="flex items-center justify-center h-16 w-1/2 bg-white rounded-l-full">
+                  <Image
+                    source={require("../public/house.png")} // Replace with your right button image path
+                    className="w-full h-11" // Adjust size as needed
+                    resizeMode="contain"
+                  />
+                </TouchableOpacity>
+                
+                <TouchableOpacity onPress={() => setComp("map")} className="flex items-center justify-center w-1/2 bg-slate-500 rounded-r-full">
+                  <Image
+                    source={require("../public/map.png")} // Replace with your right button image path
+                    className="w-full h-11" // Adjust size as needed
+                    resizeMode="contain"
+                  />
+                </TouchableOpacity>
+              </View>
+
         </View>
-      </View>
+        </LinearGradient>
 
       {/* Modal for selecting coordinates */}
       <Modal
@@ -168,27 +214,29 @@ const Main = ({ setComp, session, mapPrevComp }) => {
         visible={modalVisible}
         onRequestClose={() => setModalVisible(false)}
       >
-      <View className = "flex flex-col justify-center items-center top-16">
-        <View className="flex justify-center items-center w-full rounded-lg h-5/6 bg-slate-800/90">
-          <Text className="text-4xl mb-5 text-white text-center">How are you feeling?</Text>
-          <View className="flex-row flex-wrap justify-around w-full px-4">
-            {["happy", "sad", "neutral", "angry"].map((mood) => (
-              <TouchableOpacity
-              key={mood}
-              onPress={() => handleImagePress(mood)}
-              className="flex items-center w-1/2 mb-4 h-24 justify-center" // Set width to half for two in a row
-            >
-              <Image
-                source={moodImages[mood]}
-                className="w-100 h-100"
-                resizeMode="contain"
-              />
-            </TouchableOpacity>
-            ))}
+      <BlurView intensity={50} experimentalBlurMethod="dimezisBlurView">
+        <View className = "flex flex-col justify-center items-center top-16">
+          <View className="flex justify-center items-center w-full rounded-lg h-5/6 bg-slate-800/90">
+            <Text className="text-4xl mb-5 text-white text-center">How are you feeling?</Text>
+            <View className="flex-row flex-wrap justify-around w-full px-4">
+              {["happy", "sad", "neutral", "angry"].map((mood) => (
+                <TouchableOpacity
+                key={mood}
+                onPress={() => handleImagePress(mood)}
+                className="flex items-center w-1/2 mb-4 h-24 justify-center" // Set width to half for two in a row
+              >
+                <Image
+                  source={moodImages[mood]}
+                  className="w-100 h-100"
+                  resizeMode="contain"
+                />
+              </TouchableOpacity>
+              ))}
+            </View>
+            <Text className = "text-slate-300 mt-6">Tap to log answer</Text>
           </View>
-          <Text className = "text-slate-300 mt-6">Tap to log answer</Text>
-        </View>
-        </View>
+          </View>
+        </BlurView>
       </Modal>
     </View>
   );
