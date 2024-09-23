@@ -7,6 +7,7 @@ import {
   Alert,
   Modal,
   TouchableOpacity,
+  StyleSheet
 } from "react-native";
 import * as Location from "expo-location";
 import { supabase } from "../lib/supabase";
@@ -37,7 +38,7 @@ const Main = ({ setComp, session, mapPrevComp }) => {
 
   const openAISummarizer = async (AIcoordinates) => {
     const apikey = process.env.EXPO_PUBLIC_API_OPEN_AI_KEY;
-    console.log(JSON.stringify(AIcoordinates));
+    // console.log(JSON.stringify(AIcoordinates));
     console.log("start");
     try {
       const response = await fetch(
@@ -99,6 +100,7 @@ const Main = ({ setComp, session, mapPrevComp }) => {
       );
 
       const json = await response.json();
+      console.log(json)
       console.log("this is the result", json.choices[0].message.content);
       const content = JSON.parse(json?.choices?.[0]?.message?.content);
       console.log("this is the content", content);
@@ -215,6 +217,18 @@ const Main = ({ setComp, session, mapPrevComp }) => {
     }
   };
 
+  const styles = StyleSheet.create({
+    blurContainer: {
+      flex: 1,
+      padding: 20,
+      margin: 16,
+      textAlign: 'center',
+      justifyContent: 'center',
+      overflow: 'hidden',
+      borderRadius: 20,
+    }
+  });
+
   return (
     <View className="flex-1 overflow-auto">
       {/*header*/}
@@ -237,12 +251,25 @@ const Main = ({ setComp, session, mapPrevComp }) => {
         </TouchableOpacity>
       </View>
       <LinearGradient
-        // Button Linear Gradient
-        colors={["#4c669f", "#3b5998", "#192f6a"]}
+        colors={["#a5b4fc", "#f59e0b"]}
       >
+        <View>
         <View className="py-12 md:py-24 lg:py-32 xl:py-48 h-screen flex items-center justify-between">
-          <Text className="text-5xl">Hello, {fullName}</Text>
-          <View className="h-1/6 w-5/6 bg-white rounded-3xl flex items-center bottom-5">
+        <Text className="text-5xl font-serif" style={{ 
+          textShadowColor: '#000',
+          textShadowOffset: { width: 1, height: 1 },
+          textShadowRadius: 2,
+        }}>
+          Hello, {fullName}
+        </Text>
+
+        <View className="h-1/6 w-5/6 bg-white rounded-3xl flex items-center bottom-5" style={{
+            shadowColor: '#000', 
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.25, 
+            shadowRadius: 3.5, 
+            elevation: 5, 
+          }}>
             <View className="w-full h-1/3 bg-indigo-500 rounded-t-3xl flex items-center justify-center">
               <Text className="text-white text-xl">
                 Based on our analysis...
@@ -251,20 +278,19 @@ const Main = ({ setComp, session, mapPrevComp }) => {
             <View className="top-3 flex items-center mx-5">
               <Text className="text-xl text-center">
                 You tend to feel more happy at:{" "}
-                <Text className="color-indigo-500">{mostHappy}</Text>
+                <Text className="text-indigo-500">{mostHappy}</Text>
               </Text>
             </View>
-            {/* {coordinates &&
-                  JSON.parse(coordinates).map((entry, index) => (
-                    <Text key={index}>
-                      Mood: {entry.mood}, Latitude: {entry.latitude}, Longitude:{" "}
-                      {entry.longitude}
-                      {"\n"}
-                    </Text>
-                  ))} */}
           </View>
 
-          <View className="h-1/6 w-5/6 bg-white rounded-3xl flex items-center bottom-5">
+
+          <View className="h-1/6 w-5/6 bg-white rounded-3xl flex items-center bottom-5" style={{
+            shadowColor: '#000', 
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.25, 
+            shadowRadius: 3.5, 
+            elevation: 5, 
+          }}>
             <View className="w-full h-1/3 bg-indigo-500 rounded-t-3xl flex items-center justify-center">
               <Text className="text-white text-xl">Your Recent Trends</Text>
             </View>
@@ -276,15 +302,21 @@ const Main = ({ setComp, session, mapPrevComp }) => {
               </Text>
             </View>
           </View>
-          <View className="h-1/4 w-5/6 rounded-3xl bg-white bottom-5">
-            <Text className="text-xl left-3 mb-1">Your past week:</Text>
-            <View className="flex-row flex-wrap justify-around w-full px-4">
+          <View className="h-1/4 w-5/6 rounded-3xl bg-white bottom-5" style={{
+            shadowColor: '#000', 
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.25, 
+            shadowRadius: 3.5, 
+            elevation: 5, 
+          }}>
+            <Text className="text-xl left-3 mb-1 font-serif">Your past week:</Text>
+            <View className="flex-row flex-wrap justify-around w-full px-4 bg-transparent">
               {["happy", "sad", "neutral", "angry"].map((mood) => (
-                <View key={mood} className="flex w-1/2 items-center mb-4">
+                <View key={mood} className="flex w-1/2 items-center mb-4 bg-transparent">
                   <View className="flex-row items-center">
                     <Image
                       source={moodImages[mood]}
-                      className="w-16 h-16"
+                      className="w-1/2 h-16"
                       resizeMode="contain"
                     />
                     <Text className="text-2xl"> X{moodCounts[mood]}</Text>
@@ -293,7 +325,8 @@ const Main = ({ setComp, session, mapPrevComp }) => {
               ))}
             </View>
           </View>
-          <View className="flex-row justify-between bottom-8 w-full">
+          <View className="flex items-center">
+          <View className="flex-row justify-between bottom-8 w-5/6">
             <TouchableOpacity
               onPress={() => setComp("map")}
               className="flex items-center justify-center h-16 w-1/2 bg-white rounded-l-full"
@@ -316,7 +349,10 @@ const Main = ({ setComp, session, mapPrevComp }) => {
               />
             </TouchableOpacity>
           </View>
+          </View>
         </View>
+        </View>
+
       </LinearGradient>
 
       {/* Modal for selecting coordinates */}
@@ -326,10 +362,13 @@ const Main = ({ setComp, session, mapPrevComp }) => {
         visible={modalVisible}
         onRequestClose={() => setModalVisible(false)}
       >
-        <BlurView intensity={50} experimentalBlurMethod="dimezisBlurView">
-          <View className="flex flex-col justify-center items-center top-16">
-            <View className="flex justify-center items-center w-full rounded-lg h-5/6 bg-slate-800/90">
-              <Text className="text-4xl mb-5 text-white text-center">
+        <View className = "flex items-center ">
+          <View className="flex flex-col justify-center items-center top-24 w-5/6">
+          <BlurView style={styles.blurContainer} intensity={50} experimentalBlurMethod="dimezisBlurView" className="absolute inset-0 w-[300px] h-[420px]">
+          </BlurView>
+
+            <View className="flex justify-center items-center w-full rounded-3xl h-5/6 bg-slate-800/70">
+              <Text className="text-4xl mb-5 text-white text-center bg-transparent font-serif">
                 How are you feeling?
               </Text>
               <View className="flex-row flex-wrap justify-around w-full px-4">
@@ -337,7 +376,7 @@ const Main = ({ setComp, session, mapPrevComp }) => {
                   <TouchableOpacity
                     key={mood}
                     onPress={() => handleImagePress(mood)}
-                    className="flex items-center w-1/2 mb-4 h-24 justify-center" // Set width to half for two in a row
+                    className="flex items-center w-1/2 mb-4 h-24 justify-center bg-transparent" // Set width to half for two in a row
                   >
                     <Image
                       source={moodImages[mood]}
@@ -349,8 +388,9 @@ const Main = ({ setComp, session, mapPrevComp }) => {
               </View>
               <Text className="text-slate-300 mt-6">Tap to log answer</Text>
             </View>
+
           </View>
-        </BlurView>
+        </View>
       </Modal>
     </View>
   );

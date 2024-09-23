@@ -10,6 +10,7 @@ import {
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase";
 import MapView, { Marker } from 'react-native-maps';
+import { LinearGradient } from "expo-linear-gradient";
 
 // Map moods to their respective images
 const moodImages = {
@@ -92,6 +93,10 @@ const Map = ({ setComp, session, setMapPrevComp }) => {
               <Text className="text-lg  underline text-slate-300">Sign Out</Text>
             </TouchableOpacity>
           </View>
+    <LinearGradient
+        // Button Linear Gradient
+        colors={["#334155", "#a16207"]}
+      >
       <View className="py-12 md:py-24 lg:py-32 xl:py-48">
         <View className="flex justify-between">
         {mostRecentCoordinate ? (
@@ -124,10 +129,10 @@ const Map = ({ setComp, session, setMapPrevComp }) => {
           )}
 
           <View className = "flex items-center">
-            <Text className = "">Scroll to Explore Your Map</Text>
+            <Text className = "font-serif text-xl text-white top-5">Scroll to Explore Your Map</Text>
           </View>
-
-          <View className="flex-row justify-between w-full top-14">
+          <View className="flex items-center">
+          <View className="flex-row justify-between w-5/6 top-20">
               <TouchableOpacity onPress={() => setComp("main")} className="flex items-center justify-center h-16 w-1/2 bg-slate-500 rounded-l-full">
                   <Image
                     source={require("../public/house.png")} // Replace with your right button image path
@@ -144,8 +149,10 @@ const Map = ({ setComp, session, setMapPrevComp }) => {
                   />
                 </TouchableOpacity>
               </View>
+              </View>
         </View>
       </View>
+      </LinearGradient>
     </View>
   );
 };
