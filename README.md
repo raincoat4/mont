@@ -2,8 +2,8 @@
 # MO:NT: Mood Organization : Noticing and Tracking
 
 **As part of Stanford BioHacks 2024**  
-Demo: \
-Devpost:
+Demo: https://www.youtube.com/watch?v=ov-3Y2Oq9C4 \
+Devpost: https://devpost.com/software/mo-nt
 
 Live Share was used when developing this applcation
 ## Inspiration
