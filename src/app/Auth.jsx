@@ -87,7 +87,7 @@ const Auth = ({ setComp, setIsModalVisible, isSignUp, session }) => {
           value={name}
           onChangeText={setName}
           placeholder="Name"
-          className="mt-4"
+          className="mt-4 text-black bg-transparent border-b border-white"
         />
       )}
       <TextInput

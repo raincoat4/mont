@@ -123,11 +123,12 @@ const Main = ({ setComp, session, mapPrevComp }) => {
     <View className="flex-1 overflow-auto">
       <View className="py-12 md:py-24 lg:py-32 xl:py-48">
         <View>
-          <View>
+          {/*header*/}
+          <View className = "flex w-full">
             <Text className="text-xl font-bold">MO:NT</Text>
             <Image
               source={require("../public/mont_logo.png")}
-              className="w-50 h-50"
+              className="w-20 h-20"
               resizeMode="contain"
             />
           </View>
@@ -167,24 +168,26 @@ const Main = ({ setComp, session, mapPrevComp }) => {
         visible={modalVisible}
         onRequestClose={() => setModalVisible(false)}
       >
-        <View className="flex-1 justify-center items-center bg-black/100">
-          <Text className="text-2xl mb-5 text-white">Choose your mood:</Text>
-          <View className="flex-row justify-around w-full px-4">
+      <View className = "flex flex-col justify-center items-center top-16">
+        <View className="flex justify-center items-center w-full rounded-lg h-5/6 bg-slate-800/90">
+          <Text className="text-4xl mb-5 text-white text-center">How are you feeling?</Text>
+          <View className="flex-row flex-wrap justify-around w-full px-4">
             {["happy", "sad", "neutral", "angry"].map((mood) => (
               <TouchableOpacity
-                key={mood}
-                onPress={() => handleImagePress(mood)}
-                className="flex items-center"
-              >
-                <Image
-                  source={moodImages[mood]}
-                  className="w-50 h-50"
-                  resizeMode="contain"
-                />
-                <Text className="text-white">{mood}</Text>
-              </TouchableOpacity>
+              key={mood}
+              onPress={() => handleImagePress(mood)}
+              className="flex items-center w-1/2 mb-4 h-24 justify-center" // Set width to half for two in a row
+            >
+              <Image
+                source={moodImages[mood]}
+                className="w-100 h-100"
+                resizeMode="contain"
+              />
+            </TouchableOpacity>
             ))}
           </View>
+          <Text className = "text-slate-300 mt-6">Tap to log answer</Text>
+        </View>
         </View>
       </Modal>
     </View>
